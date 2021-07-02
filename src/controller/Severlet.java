@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Severlet
  */
-@WebServlet(name = "test", urlPatterns = {"/dashboard", "/inout", "/place", "/storage","/item"})
+@WebServlet(name = "test", urlPatterns = {"/dashboard","/brand", "/inout", "/inventory", "/storage","/item","/"})
 public class Severlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +34,7 @@ public class Severlet extends HttpServlet {
 		    case "/dashboard":
 		        gotoDashBoard(request, response);
 		        break;
-		    case "/listBrand":
+		    case "/brand":
 		        gotoBrand(request, response);
 		        break;
 		    case "/inout":
@@ -45,37 +43,36 @@ public class Severlet extends HttpServlet {
 		    case "/item":
 		        gotoItem(request, response);
 		        break;
-		    case "/place":
-		        gotoPlace(request, response);
+		    case "/inventory":
+		    	gotoInventory(request, response);
 		        break;
 		    case "/storage":
 		        gotoStorage(request, response);
 		        break;
+		     default:
+		    	gotoDashBoard(request, response);
+		    	break;
 		}
 	}
 
 	private void gotoStorage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Storage.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("listkho");
 	}
 
-	private void gotoPlace(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void gotoInventory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Place.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("listtonkho");
 	}
 
 	private void gotoItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Item.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("listmathang");
 	}
 
 	private void gotoInOut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("InOut.jsp");
-        dispatcher.forward(request, response);
+		response.sendRedirect("listphieu");
 	}
 
 	private void gotoDashBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,8 +83,7 @@ public class Severlet extends HttpServlet {
 
 	private void gotoBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("brand.jsp");
-        dispatcher.forward(request, response);
+		response.sendRedirect("listBrand");
 	}
 
 	/**

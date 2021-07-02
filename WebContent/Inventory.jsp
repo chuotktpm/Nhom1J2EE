@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>">
 	<title>Dashboard / Manager Storage</title>
 	<link rel="icon" href="https://img.icons8.com/ios-glyphs/60/E55700/data-center.png" type="image/icon type">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -32,13 +32,13 @@
 					<span>Brand</span>
 				</a>
 			</li>
-			<li class="selected-menu">
+			<li>
 				<a href="<%=request.getContextPath()%>/inout">
 					<img src="https://img.icons8.com/ios/30/ffffff/multiple-inputs.png"/>
 					<span>Input Output</span>
 				</a>
 			</li>
-			<li>
+			<li class="selected-menu">
 				<a href="<%=request.getContextPath()%>/inventory">
 					<img src="https://img.icons8.com/ios-filled/30/ffffff/in-inventory.png"/>
 					<span>Inventory</span>
@@ -59,9 +59,9 @@
 		</ul>
 	</div>
 	<div class="page-content">
-		<h3>INPUT OUTPUT</h3>
+		<h3>INVENTORY</h3>
 		<div class="btn-header">
-			<a href="<%=request.getContextPath()%>/newphieu" class="btn btn-danger">ADD</a>
+			<a href="<%=request.getContextPath()%>/newtonkho" class="btn btn-danger">ADD</a>
 		</div>
 		<div class="search-bar">
 			<form class="navbar-form navbar-left" action="#">
@@ -77,27 +77,35 @@
 		<div class="container-fluid">          
 		  <table class="table table-hover">
 		    <thead>
-			  <tr>
-			    <th>ID</th>
-			    <th>Loai Phieu</th>
-			    <th>ID Mat Hang</th>
-			    <th>ID Kho</th>
-			    <th>So Luong</th>
-			    <th>Ngay</th>
-			  </tr>
+		      <tr>
+		        <th> ID </th>
+		        <th> Ma Kho </th>
+		        <th> Ma Mat Hang </th>
+		        <th> So Luong </th>
+                <th> Actions </th>
+		      </tr>
 		    </thead>
-		    <tbody>
-			  <c:forEach var="phieu" items="${listPhieu}">
-			    <tr>
-			      <td> <c:out value="${phieu.id }"></c:out> </td>
-			      <td> <c:out value="${phieu.loaiphieu }"></c:out> </td>
-			      <td> <c:out value="${phieu.idmathang}"></c:out> </td>
-			      <td> <c:out value="${phieu.idkho}"></c:out> </td>
-			      <td> <c:out value="${phieu.soluong}"></c:out> </td>
-			      <td> <c:out value="${phieu.ngay}"></c:out> </td>
-			    </tr>
-			  </c:forEach>
-		    </tbody>
+		      <tbody>
+		      <!--   for (Todo todo: todos) {  -->
+		      <c:forEach var="tk" items="${listTK}" >
+		
+		        <tr>
+		          <td><c:out value="${tk.id}"></c:out></td>
+		          <td><c:out value="${tk.idkho}"></c:out></td>
+		          <td><c:out value="${tk.idmathang}"></c:out></td>
+		          <td><c:out value="${tk.soluong}"></c:out></td>
+		          <td>
+		          	<a href="edittonkho?id=<c:out value="${tk.id}"/>">
+		          		<img src="https://img.icons8.com/material-rounded/24/000000/edit--v2.png"/>
+		          	</a> 
+		          	 <a href="deletetonkho?id=<c:out value="${tk.id}"/>">
+		          	 	<img src="https://img.icons8.com/ios-glyphs/24/000000/delete-forever.png"/>
+		          	 </a>
+		          </td>
+		        </tr>
+		      </c:forEach>
+		      <!-- } -->
+		      </tbody>
 		  </table>
 		</div>
 </body>
@@ -105,11 +113,7 @@
 <style>
 	body{
 		margin: 0px;
-	}
-	li.selected-menu{
-		background: #aaa6a0;
-		color: black;
-	}
+	}	
 	li.selected-menu{
 		background: #aaa6a0;
 		color: black;
@@ -117,15 +121,15 @@
 	.menu ul li a{
 		text-decoration: none;
 	}
+	h3{
+		margin-left: 20px;
+	}
 	.title{
 		text-align: center;
 		font-size: 40px;
 		font-family: sans-serif;
 		background: appworkspace;
 		padding: 10px;
-	}	
-	h3{
-		margin-left: 20px;
 	}
 	.menu{
 		float: left;

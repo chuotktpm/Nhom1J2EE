@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Dashboard / Manager Storage</title>
 	<link rel="icon" href="https://img.icons8.com/ios-glyphs/60/E55700/data-center.png" type="image/icon type">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -20,14 +19,14 @@
 				</a>
 			</li>
 			
-			<li>
+			<li class="selected-menu">
 				<a href="<%=request.getContextPath()%>/dashboard">
 					<img src="https://img.icons8.com/ios-filled/30/ffffff/dashboard.png"/>
 					<span>Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="<%=request.getContextPath()%>/listBrand">
+				<a href="<%=request.getContextPath()%>/brand">
 					<img src="https://img.icons8.com/ios-glyphs/30/ffffff/badge.png"/>
 					<span>Brand</span>
 				</a>
@@ -39,9 +38,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="<%=request.getContextPath()%>/place">
-					<img src="https://img.icons8.com/ios/30/ffffff/place-marker--v1.png"/>
-					<span>Place</span>
+				<a href="<%=request.getContextPath()%>/inventory">
+					<img src="https://img.icons8.com/ios-filled/30/ffffff/in-inventory.png"/>
+					<span>Inventory</span>
 				</a>
 			</li>
 			<li>
@@ -60,44 +59,46 @@
 	</div>
 	<div class="page-content">
 		<h3>DASHBOARD</h3>
-		<div class="btn-header">
-			<button type="submit" class="btn btn-danger btn-add-brand">RELOAD</button>
-		</div>
-		<div class="search-bar">
-			<form class="navbar-form navbar-left" action="#">
-			      <div class="form-group">
-			        <input type="text" class="form-control" placeholder="Search">
-			      </div>
-			      <button type="submit" class="btn btn-default">
-			      		<img src="https://img.icons8.com/ios/15/011105/search--v1.png"/>
-			      </button>
-			</form>
-		</div>
-		
-		<div class="container-fluid">          
+		<div class="container">          
 		  <table class="table table-hover">
 		    <thead>
 		      <tr>
-		        <th>Firstname</th>
-		        <th>Lastname</th>
-		        <th>Email</th>
+		        <th>Name</th>
+		        <th>ID Student</th>
+		        <th>Birthday</th>
+		       	
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr>
-		        <td>John</td>
-		        <td>Doe</td>
-		        <td>john@example.com</td>
+		      <tr class="success">
+		        <td>Nguyễn Thái Bảo</td>
+		        <td>DTC175524801030060</td>
+		        <td>17/12/1999</td>
 		      </tr>
-		      <tr>
-		        <td>Mary</td>
-		        <td>Moe</td>
-		        <td>mary@example.com</td>
+		      <tr class="danger">
+		        <td>Lê Xuân Quốc Anh</td>
+		        <td>DTC175524801030008</td>
+		        <td>19/03/1999</td>
 		      </tr>
-		      <tr>
-		        <td>July</td>
-		        <td>Dooley</td>
-		        <td>july@example.com</td>
+		      <tr class="info">
+		        <td>Lù Tuấn Anh</td>
+		        <td>DTC175524802010009  </td>
+		        <td>17/06/1999</td>
+		      </tr>
+		      <tr class="warning">
+		        <td>Hà Thế Anh</td>
+		        <td>DTC175524801030020</td>
+		        <td>01/04/1999</td>
+		      </tr>
+		      <tr class="success">
+		        <td>Trương Thị Lan Anh</td>
+		        <td>DTC17H524801030047</td>
+		        <td>24/12/1999</td>
+		      </tr>
+		      <tr class="danger">
+		        <td>Vi Ngọc Ánh</td>
+		        <td>DTC17H524801030050</td>
+		        <td>05/09/1999</td>
 		      </tr>
 		    </tbody>
 		  </table>
@@ -108,6 +109,9 @@
 <style>
 	body{
 		margin: 0px;
+	}
+	.menu ul li a{
+		text-decoration: none;
 	}
 	.title{
 		text-align: center;
@@ -149,6 +153,11 @@
 		color: black;
 	}
 	
+	li.selected-menu{
+		background: #aaa6a0;
+		color: black;
+	}
+	
 	li.logo-li:hover {
 		background: #373330;
 		color: black;
@@ -172,6 +181,9 @@
 		
 	h3{
 		margin-left: 20px;
+		font-size: 40px;
+		font-weight: bold;
+		color: orange;
 	}
 	
 	.page-content{

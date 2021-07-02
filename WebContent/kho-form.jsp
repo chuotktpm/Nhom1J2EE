@@ -1,11 +1,18 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: AaronLX
+  Date: 7/2/2021
+  Time: 11:57 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 
 <head>
-    <title>Brand Management Application</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Kho Management Application</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <style>
@@ -122,7 +129,7 @@
 					<span>Dashboard</span>
 				</a>
 			</li>
-			<li class="selected-menu">
+			<li>
 				<a href="<%=request.getContextPath()%>/brand">
 					<img src="https://img.icons8.com/ios-glyphs/30/ffffff/badge.png"/>
 					<span>Brand</span>
@@ -140,7 +147,7 @@
 					<span>Inventory</span>
 				</a>
 			</li>
-			<li>
+			<li class="selected-menu">
 				<a href="<%=request.getContextPath()%>/storage">
 					<img src="https://img.icons8.com/ios/30/ffffff/ammo-tin.png"/>
 					<span>Storage</span>
@@ -158,34 +165,34 @@
 <div class="container col-md-5">
   <div class="card">
     <div class="card-body">
-      <c:if test="${brand != null}">
-      <form action="updatebrand" method="post">
+      <c:if test="${kho != null}">
+      <form action="updatekho" method="post">
         </c:if>
-        <c:if test="${brand == null}">
-        <form action="insertbrand" method="post">
+        <c:if test="${kho == null}">
+        <form action="insertkho" method="post">
           </c:if>
 
           <caption>
             <h2>
-              <c:if test="${brand != null}">
-                Edit Brand
+              <c:if test="${kho != null}">
+                Edit Kho
               </c:if>
-              <c:if test="${brand == null}">
-                Add New Brand
+              <c:if test="${kho == null}">
+                Add New Kho
               </c:if>
             </h2>
           </caption>
 
-          <c:if test="${brand != null}">
-            <input type="hidden" name="id" value="<c:out value='${brand.id}' />" />
+          <c:if test="${kho != null}">
+            <input type="hidden" name="id" value="<c:out value='${kho.id}' />" />
           </c:if>
 
           <fieldset class="form-group">
-            <label>Name</label> <input type="text" value="<c:out value='${brand.ten}' />" class="form-control" name="name" required="required">
+            <label>Ten Kho</label> <input type="text" value="<c:out value='${kho.ten}' />" class="form-control" name="tenkho" required="required">
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Description</label> <input type="text" value="<c:out value='${brand.mota}' />" class="form-control" name="description">
+            <label>Dia Diem</label> <input type="text" value="<c:out value='${kho.diadiem}' />" class="form-control" name="diadiem" required="required">
           </fieldset>
 
           <button type="submit" class="btn btn-success">Save</button>

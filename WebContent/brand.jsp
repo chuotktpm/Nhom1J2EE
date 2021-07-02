@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Dashboard / Manager Storage</title>
 	<link rel="icon" href="https://img.icons8.com/ios-glyphs/60/E55700/data-center.png" type="image/icon type">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -27,8 +26,8 @@
 					<span>Dashboard</span>
 				</a>
 			</li>
-			<li>
-				<a href="<%=request.getContextPath()%>/listBrand">
+			<li class="selected-menu">
+				<a href="<%=request.getContextPath()%>/brand">
 					<img src="https://img.icons8.com/ios-glyphs/30/ffffff/badge.png"/>
 					<span>Brand</span>
 				</a>
@@ -40,9 +39,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="<%=request.getContextPath()%>/place">
-					<img src="https://img.icons8.com/ios/30/ffffff/place-marker--v1.png"/>
-					<span>Place</span>
+				<a href="<%=request.getContextPath()%>/inventory">
+					<img src="https://img.icons8.com/ios-filled/30/ffffff/in-inventory.png"/>
+					<span>Inventory</span>
 				</a>
 			</li>
 			<li>
@@ -62,7 +61,7 @@
 	<div class="page-content">
 		<h3>BRAND</h3>
 		<div class="btn-header">
-			<a href="./newbrand" class="btn btn-danger">Add New Brand</a>
+			<a href="<%=request.getContextPath()%>/newbrand" class="btn btn-danger">ADD NEW BRAND</a>
 		</div>
 		<div class="search-bar">
 			<form class="navbar-form navbar-left" action="#">
@@ -81,38 +80,36 @@
 		      <tr>
 		        <th>ID</th>
                 <th>Name</th>
-                <th>Is_Enabled</th>
                 <th>Description</th>
                 <th>Actions</th>
 		      </tr>
 		    </thead>
-		    <tbody>
-            <!--   for (Todo todo: todos) {  -->
-            <c:forEach var="brand" items="${listBrand}">
-
-                <tr>
-                    <td>
-                        <c:out value="${brand.id}" />
-                    </td>
-                    <td>
-                        <c:out value="${brand.name}" />
-                    </td>
-                    <td>
-                        <c:if test="${brand.is_enabled == 1}">
-                            <c:out value="Enable" />
-                        </c:if>
-                        <c:if test="${brand.is_enabled == 0}">
-                            <c:out value="Disable" />
-                        </c:if>
-                    </td>
-                    <td>
-                        <c:out value="${brand.description}" />
-                    </td>
-                    <td><a href="editbrand?id=<c:out value='${brand.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="deletebrand?id=<c:out value='${brand.id}' />">Delete</a></td>
-                </tr>
-            </c:forEach>
-            <!-- } -->
-            </tbody>
+		      <tbody>
+		      <!--   for (Todo todo: todos) {  -->
+		      <c:forEach var="brand" items="${listBrand}">
+		
+		        <tr>
+		          <td>
+		            <c:out value="${brand.id}" />
+		          </td>
+		          <td>
+		            <c:out value="${brand.ten}" />
+		          </td>
+		          <td>
+		            <c:out value="${brand.mota}" />
+		          </td>
+		          <td>
+		          	<a href="editbrand?id=<c:out value='${brand.id}' />">
+		          		<img src="https://img.icons8.com/material-rounded/24/000000/edit--v2.png"/>
+		          	</a> 
+		          	 <a href="deletebrand?id=<c:out value='${brand.id}' />">
+		          	 	<img src="https://img.icons8.com/ios-glyphs/24/000000/delete-forever.png"/>
+		          	 </a>
+		          </td>
+		        </tr>
+		      </c:forEach>
+		      <!-- } -->
+		      </tbody>
 		  </table>
 		</div>
 	</div>
@@ -121,6 +118,13 @@
 <style>
 	body{
 		margin: 0px;
+	}
+	.menu ul li a{
+		text-decoration: none;
+	}
+	li.selected-menu{
+		background: #aaa6a0;
+		color: black;
 	}
 	.title{
 		text-align: center;

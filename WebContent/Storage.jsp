@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Dashboard / Manager Storage</title>
 	<link rel="icon" href="https://img.icons8.com/ios-glyphs/60/E55700/data-center.png" type="image/icon type">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="<%=request.getContextPath()%>/listBrand">
+				<a href="<%=request.getContextPath()%>/brand">
 					<img src="https://img.icons8.com/ios-glyphs/30/ffffff/badge.png"/>
 					<span>Brand</span>
 				</a>
@@ -39,12 +39,12 @@
 				</a>
 			</li>
 			<li>
-				<a href="<%=request.getContextPath()%>/place">
-					<img src="https://img.icons8.com/ios/30/ffffff/place-marker--v1.png"/>
-					<span>Place</span>
+				<a href="<%=request.getContextPath()%>/inventory">
+					<img src="https://img.icons8.com/ios-filled/30/ffffff/in-inventory.png"/>
+					<span>Inventory</span>
 				</a>
 			</li>
-			<li>
+			<li class="selected-menu">
 				<a href="<%=request.getContextPath()%>/storage">
 					<img src="https://img.icons8.com/ios/30/ffffff/ammo-tin.png"/>
 					<span>Storage</span>
@@ -61,7 +61,7 @@
 	<div class="page-content">
 		<h3>STORAGE</h3>
 		<div class="btn-header">
-			<button type="submit" class="btn btn-danger btn-add-brand">ADD</button>
+			<a href="<%=request.getContextPath()%>/newkho" class="btn btn-danger">ADD STORAGE</a>
 		</div>
 		<div class="search-bar">
 			<form class="navbar-form navbar-left" action="#">
@@ -77,28 +77,28 @@
 		<div class="container-fluid">          
 		  <table class="table table-hover">
 		    <thead>
-		      <tr>
-		        <th>Firstname</th>
-		        <th>Lastname</th>
-		        <th>Email</th>
-		      </tr>
+			  <tr>
+			    <th> ID </th>
+			    <th>  Name Storage  </th>
+			    <th>  Place   </th>
+			  </tr>
 		    </thead>
 		    <tbody>
-		      <tr>
-		        <td>John</td>
-		        <td>Doe</td>
-		        <td>john@example.com</td>
-		      </tr>
-		      <tr>
-		        <td>Mary</td>
-		        <td>Moe</td>
-		        <td>mary@example.com</td>
-		      </tr>
-		      <tr>
-		        <td>July</td>
-		        <td>Dooley</td>
-		        <td>july@example.com</td>
-		      </tr>
+			  <c:forEach var="kho" items="${listKho}">
+			    <tr>
+			      <td> <c:out value="${kho.id }"></c:out> </td>
+			      <td> <c:out value="${kho.ten }"></c:out> </td>
+			      <td> <c:out value="${kho.diadiem }"></c:out> </td>
+			      <td>
+			        <a href="editkho?id=<c:out value="${kho.id }"/>">
+			        	<img src="https://img.icons8.com/material-rounded/24/000000/edit--v2.png"/>
+			        </a>
+			        <a href="deletekho?id=<c:out value="${kho.id }"/>">
+			        	<img src="https://img.icons8.com/ios-glyphs/24/000000/delete-forever.png"/>
+			        </a>
+			      </td>
+			    </tr>
+			  </c:forEach>
 		    </tbody>
 		  </table>
 		</div>
@@ -107,7 +107,14 @@
 <style>
 	body{
 		margin: 0px;
-	}	
+	}
+	li.selected-menu{
+		background: #aaa6a0;
+		color: black;
+	}
+	.menu ul li a{
+		text-decoration: none;
+	}
 	h3{
 		margin-left: 20px;
 	}
